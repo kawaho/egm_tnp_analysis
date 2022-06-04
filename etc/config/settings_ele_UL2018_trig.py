@@ -22,7 +22,7 @@ flags = {
     'passingMVA94XwpHZZisoV2'  : '(passingMVA94XwpHZZisoV2 == 1)',
     }
 
-baseOutDir = 'results/UL2018/tnpEleIso/'
+baseOutDir = 'results/UL2018/tnpEleTrig/'
 
 #############################################################
 ########## samples definition  - preparing the samples
@@ -30,7 +30,7 @@ baseOutDir = 'results/UL2018/tnpEleIso/'
 ### samples are defined in etc/inputs/tnpSampleDef.py
 ### not: you can setup another sampleDef File in inputs
 import etc.inputs.tnpSampleDef as tnpSamples
-tnpTreeDir = 'tnpEleIDs'
+tnpTreeDir = 'tnpEleTrig'
 
 samplesDef = {
     'data'   : tnpSamples.UL2018['data_Run2018A'].clone(),
@@ -83,8 +83,8 @@ if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/eos/cms/s
 biningDef = [
    { 'var' : 'el_sc_eta' , 'type': 'float', 'bins': [-2.5,-2.0,-1.566,-1.4442, -0.8, 0.0, 0.8, 1.4442, 1.566, 2.0, 2.5] },
 #   { 'var' : 'el_pt' , 'type': 'float', 'bins': [10,20,35,50,100,500] },
-   { 'var' : 'el_pt' , 'type': 'float', 'bins': [20,35,50,100,500] },
-#   { 'var' : 'el_pt' , 'type': 'float', 'bins': [34,50,100,200,500] },
+#   { 'var' : 'el_pt' , 'type': 'float', 'bins': [20,35,50,100,500] },
+   { 'var' : 'el_pt' , 'type': 'float', 'bins': [34,50,100,200,500] },
 
 
 ]
@@ -93,7 +93,7 @@ biningDef = [
 ########## Cuts definition for all samples
 #############################################################
 ### cut
-cutBase   = 'passingMVA94Xwp80noisoV2 && tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.17 && el_q*tag_Ele_q < 0'
+cutBase   = flags['passIso']+'&& el_pt > 34 && passingMVA94Xwp80noisoV2 && tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.17 && el_q*tag_Ele_q < 0'
 
 # can add addtionnal cuts for some bins (first check bin number using tnpEGM --checkBins)
 #LS: we removed the met cuts cause JEC not ready for UL2018
@@ -134,41 +134,25 @@ tnpParNomFit = [
     "acmsP[60.,50.,80.]","betaP[0.05,0.01,0.08]","gammaP[0.1, -2, 2]","peakP[90.0]",
     "acmsF[60.,50.,80.]","betaF[0.05,0.01,0.08]","gammaF[0.1, -2, 2]","peakF[90.0]",
     ]
-
-# tail on the left with high bkg
-tnpParAltSigFit = [
-    "meanP[-0.0,-5.0,5.0]","sigmaP[1,0.7,6.0]","alphaP[2.0,1.2,3.5]" ,'nP[3,-5,5]',"sigmaP_2[1.5,0.5,6.0]","sosP[1,0.5,5.0]",
-    "meanF[-0.0,-5.0,5.0]","sigmaF[2,0.7,15.0]","alphaF[2.0,1.2,3.5]",'nF[3,-5,5]',"sigmaF_2[2.0,0.5,6.0]","sosF[1,0.5,5.0]",
-    "acmsP[60.,50.,100.]","betaP[0.04,0.01,0.1]","gammaP[0.1, 0.005, 1]","peakP[90.0]",
-    "acmsF[60.,50.,185.]","betaF[0.04,0.01,0.1]","gammaF[0.1, 0.005, 1]","peakF[90.0]",
-    ]
-# tail on the left with sigma tweak
+# tail on the left
 #tnpParAltSigFit = [
-#    "meanP[-0.0,-5.0,5.0]","sigmaP[1,0.7,6.0]","alphaP[2.0,0.005,3.5]" ,'nP[3,0,5]',"sigmaP_2[2,0.01,10.0]","sosP[1,0.5,5.0]",
-#    "meanF[-0.0,-5.0,5.0]","sigmaF[2,0.7,15.0]","alphaF[2.0,0.005,3.5]",'nF[3,0,5]',"sigmaF_2[2.0,0.01,10.0]","sosF[1,0.5,5.0]",
+#    "meanP[-0.0,-5.0,5.0]","sigmaP[1,0.7,6.0]","alphaP[2.0,1.2,3.5]" ,'nP[3,-5,5]',"sigmaP_2[1.5,0.5,6.0]","sosP[1,0.5,5.0]",
+#    "meanF[-0.0,-5.0,5.0]","sigmaF[2,0.7,15.0]","alphaF[2.0,1.2,3.5]",'nF[3,-5,5]',"sigmaF_2[2.0,0.5,6.0]","sosF[1,0.5,5.0]",
 #    "acmsP[60.,50.,75.]","betaP[0.04,0.01,0.06]","gammaP[0.1, 0.005, 1]","peakP[90.0]",
 #    "acmsF[60.,50.,75.]","betaF[0.04,0.01,0.06]","gammaF[0.1, 0.005, 1]","peakF[90.0]",
 #    ]
 # tail on the right
-#tnpParAltSigFit = [
-#    "meanP[-0.0,-5.0,5.0]","sigmaP[1,0.7,6.0]","alphaP[-0.1,-5,0]" ,'nP[3,0,5]',"sigmaP_2[1.5,0.01,6.0]","sosP[1,0.5,5.0]",
-#    "meanF[-0.0,-5.0,5.0]","sigmaF[2,0.7,15.0]","alphaF[-0.1,-5,0]",'nF[3,0,5]',"sigmaF_2[1.5,0.01,6.0]","sosF[1,0.5,5.0]",
-#    "acmsP[60.,50.,75.]","betaP[0.04,0.01,0.06]","gammaP[0.1, 0.005, 1]","peakP[90.0]",
-#    "acmsF[60.,50.,75.]","betaF[0.04,0.01,0.06]","gammaF[0.1, 0.005, 1]","peakF[90.0]",
-#    ]
-
-#tnpParAltSigFit_addGaus = [
-#    "meanP[-0.0,-5.0,5.0]","sigmaP[1,0.7,6.0]","alphaP[2.0,1.2,3.5]" ,'nP[3,-5,5]',"sigmaP_2[1.5,0.5,6.0]","sosP[1,0.5,5.0]",
-#    "meanF[-0.0,-5.0,5.0]","sigmaF[2,0.7,6.0]","alphaF[2.0,1.2,3.5]",'nF[3,-5,5]',"sigmaF_2[2.0,0.5,6.0]","sosF[1,0.5,5.0]",
-#    "meanGF[80.0,70.0,100.0]","sigmaGF[15,5.0,125.0]",
-#    "acmsP[60.,50.,75.]","betaP[0.04,0.01,0.06]","gammaP[0.1, 0.005, 1]","peakP[90.0]",
-#    "acmsF[60.,50.,85.]","betaF[0.04,0.01,0.06]","gammaF[0.1, 0.005, 1]","peakF[90.0]",
-#    ]
+tnpParAltSigFit = [
+    "meanP[-0.0,-5.0,5.0]","sigmaP[1,0.7,6.0]","alphaP[-0.1,-5,0]" ,'nP[3,0,5]',"sigmaP_2[1.5,0.5,6.0]","sosP[1,0.5,5.0]",
+    "meanF[-0.0,-5.0,5.0]","sigmaF[2,0.7,15.0]","alphaF[-0.1,-5,0]",'nF[3,0,5]',"sigmaF_2[1.5,0.1,6.0]","sosF[1,0.5,5.0]",
+    "acmsP[60.,50.,75.]","betaP[0.04,0.01,0.06]","gammaP[0.1, 0.005, 1]","peakP[90.0]",
+    "acmsF[60.,50.,75.]","betaF[0.04,0.01,0.06]","gammaF[0.1, 0.005, 1]","peakF[90.0]",
+    ]
 tnpParAltSigFit_addGaus = [
-    "meanP[-0.0,-5.0,5.0]","sigmaP[1,0.7,6.0]","alphaP[2.0,0.1,5]" ,'nP[3,0,10]',"sigmaP_2[1.5,0.5,6.0]","sosP[1,0.001,5.0]",
-    "meanF[-0.0,-5.0,5.0]","sigmaF[2,0.7,6.0]","alphaF[2.0,0.1,5]",'nF[3,0,10]',"sigmaF_2[2.0,0.5,6.0]","sosF[1,0.001,5.0]",
-    "meanGF[80.0,70.0,100.0]","sigmaGF[15,20.0,125.0]",
-    "acmsP[60.,50.,100.]","betaP[0.04,0.01,0.06]","gammaP[0.1, 0.005, 1]","peakP[90.0]",
+    "meanP[-0.0,-5.0,5.0]","sigmaP[1,0.7,6.0]","alphaP[2.0,1.2,3.5]" ,'nP[3,-5,5]',"sigmaP_2[1.5,0.5,6.0]","sosP[1,0.5,5.0]",
+    "meanF[-0.0,-5.0,5.0]","sigmaF[2,0.7,6.0]","alphaF[2.0,1.2,3.5]",'nF[3,-5,5]',"sigmaF_2[2.0,0.5,6.0]","sosF[1,0.5,5.0]",
+    "meanGF[80.0,70.0,100.0]","sigmaGF[15,5.0,125.0]",
+    "acmsP[60.,50.,75.]","betaP[0.04,0.01,0.06]","gammaP[0.1, 0.005, 1]","peakP[90.0]",
     "acmsF[60.,50.,85.]","betaF[0.04,0.01,0.06]","gammaF[0.1, 0.005, 1]","peakF[90.0]",
     ]
          

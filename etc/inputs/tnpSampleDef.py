@@ -12,7 +12,8 @@ eosReReco2017 = '/eos/cms/store/group/phys_egamma/swmukher/ntuple_2017_v2/'
 eosReReco2018 = '/eos/cms/store/group/phys_egamma/swmukher/rereco2018/ECAL_NOISE/'
 #eosUL2017 = '/eos/cms/store/group/phys_egamma/asroy/Tag-and-Probe_Tree/UL2017/'
 eosUL2017 = '/eos/cms/store/group/phys_egamma/asroy/Tag-and-Probe_Tree/UL2017_MINIAOD_Nm1/'
-eosUL2018 = '/eos/cms/store/group/phys_egamma/asroy/Tag-and-Probe_Tree/UL2018_MINIAOD_Nm1/'
+#eosUL2018 = '/eos/cms/store/group/phys_egamma/asroy/Tag-and-Probe_Tree/UL2018_MINIAOD_Nm1/'
+eosUL2018 = '/eos/cms/store/group/phys_egamma/tnpTuples/tomc/2020-05-20/UL2018/merged/'
 eosUL2016 = '/eos/cms/store/group/phys_egamma/akapoor/Tag-and-Probe_Tree/UL2016_ntuples/'
 
 
@@ -107,17 +108,17 @@ UL2017 = {
 UL2018 = {
     ### MiniAOD TnP for IDs scale factors
     'DY_madgraph'              : tnpSample('DY_madgraph',
-                                       eosUL2018 + 'DYJetsToLL_madgraphMLM.root',
+                                       eosUL2018 + 'DY_LO.root',
                                        isMC = True, nEvts =  -1 ),
     'DY_amcatnloext'                 : tnpSample('DY_amcatnloext',
-                                       eosUL2018 + 'DYJetsToLL_amcatnloFXFX.root',
+                                       eosUL2018 + 'DY_NLO.root',
                                        isMC = True, nEvts =  -1 ),
 
 
-    'data_Run2018A' : tnpSample('data_Run2018A' , eosUL2018 + 'EGamma_RunA.root' , lumi = 14.02672485),
-    'data_Run2018B' : tnpSample('data_Run2018B' , eosUL2018 + 'EGamma_RunB.root' , lumi = 7.060617355),
-    'data_Run2018C' : tnpSample('data_Run2018C' , eosUL2018 + 'EGamma_RunC.root' , lumi = 6.894770971),
-    'data_Run2018D' : tnpSample('data_Run2018D' , eosUL2018 + 'EGamma_RunD.root' , lumi = 31.74220577),
+    'data_Run2018A' : tnpSample('data_Run2018A' , eosUL2018 + 'Run2018A.root' , lumi = 14.02672485),
+    'data_Run2018B' : tnpSample('data_Run2018B' , eosUL2018 + 'Run2018B.root' , lumi = 7.060617355),
+    'data_Run2018C' : tnpSample('data_Run2018C' , eosUL2018 + 'Run2018C.root' , lumi = 6.894770971),
+    'data_Run2018D' : tnpSample('data_Run2018D' , eosUL2018 + 'Run2018D.root' , lumi = 31.74220577),
     }
 
 
