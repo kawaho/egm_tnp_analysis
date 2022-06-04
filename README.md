@@ -183,3 +183,15 @@ The settings (for example [settings_pho_UL2017.py](etc/config/settings_pho_UL201
 ```bash
 export  PYTHONPATH=$PYTHONPATH:/afs/cern.ch/user/s/soffi/scratch0/TEST/CMSSW-10-0-0-pre3/src/egm_tnp_analysis 
 ```
+
+#  Browsing php
+
+1. Login through tunnel:
+   ```bash
+   ssh -xyL localhost:8885:localhost:8885 yourname@lxplus.cern.ch
+   ```
+2. Go to the plot directory:
+  ```bash
+  php -S localhost:8885 -t .
+  ```
+    
