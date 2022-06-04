@@ -6,6 +6,7 @@ Table of Contents
    * [The different fitting steps](#the-different-fitting-steps)
    * [The settings file](#the-settings-file)
    * [Update PU weights](#update-pu-weights)
+   * [Browsing php](#browsing-php)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
