@@ -188,11 +188,11 @@ export  PYTHONPATH=$PYTHONPATH:/afs/cern.ch/user/s/soffi/scratch0/TEST/CMSSW-10-
 #  Browsing php
 
 1. Login through tunnel:
-   ```bash
-   ssh -xyL localhost:8885:localhost:8885 yourname@lxplus.cern.ch
-   ```
+```bash
+ssh -xyL localhost:8885:localhost:8885 yourname@lxplus.cern.ch
+```
 2. Go to the plot directory:
-  ```bash
-  php -S localhost:8885 -t .
-  ```
+```bash
+php -S localhost:8885 -t .
+```
     
